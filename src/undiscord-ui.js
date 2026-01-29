@@ -105,7 +105,8 @@ function initUI() {
       'theme-dark',
       'theme-glass-default',
       'theme-glass-dark',
-      'theme-glass-light'
+      'theme-glass-light',
+      'theme-transparent'
     );
     if (theme !== 'default') ui.undiscordWindow.classList.add(`theme-${theme}`);
   };

@@ -89,55 +89,70 @@
 }
 
 #undiscord.theme-glass-default {
-  --uc-surface: rgba(17, 24, 43, 0.42);
-  --uc-panel: rgba(20, 29, 54, 0.38);
-  --uc-panel-strong: rgba(26, 36, 66, 0.45);
-  --uc-border: rgba(255, 255, 255, 0.22);
+  --uc-surface: rgba(17, 24, 43, 0.14);
+  --uc-panel: rgba(20, 29, 54, 0.12);
+  --uc-panel-strong: rgba(26, 36, 66, 0.18);
+  --uc-border: rgba(255, 255, 255, 0.38);
   --uc-shadow: 0 30px 70px rgba(4, 8, 18, 0.65);
   --uc-window-bg: radial-gradient(1200px 600px at 10% -10%, rgba(124, 92, 255, 0.2), transparent 45%), linear-gradient(180deg, rgba(11, 16, 32, 0.75), rgba(10, 15, 31, 0.6));
   --uc-header-bg: linear-gradient(90deg, rgba(16, 24, 51, 0.6), rgba(20, 27, 53, 0.6) 60%, rgba(16, 24, 51, 0.6));
-  --uc-tbar-bg: linear-gradient(180deg, rgba(20, 29, 54, 0.55), rgba(14, 20, 40, 0.45));
-  --uc-log-bg: linear-gradient(180deg, rgba(10, 15, 31, 0.3), rgba(10, 15, 31, 0.12));
+  --uc-tbar-bg: linear-gradient(180deg, rgba(20, 29, 54, 0.2), rgba(14, 20, 40, 0.14));
+  --uc-log-bg: linear-gradient(180deg, rgba(10, 15, 31, 0.08), rgba(10, 15, 31, 0.03));
   --uc-summary-bg: rgba(124, 92, 255, 0.16);
   --uc-summary-hover: rgba(124, 92, 255, 0.24);
-  --uc-fieldset-bg: rgba(20, 29, 54, 0.32);
+  --uc-fieldset-bg: rgba(20, 29, 54, 0.1);
 }
 
 #undiscord.theme-glass-dark {
-  --uc-surface: rgba(8, 8, 8, 0.5);
-  --uc-panel: rgba(12, 12, 12, 0.45);
-  --uc-panel-strong: rgba(18, 18, 18, 0.5);
-  --uc-border: rgba(255, 255, 255, 0.22);
+  --uc-surface: rgba(8, 8, 8, 0.18);
+  --uc-panel: rgba(12, 12, 12, 0.16);
+  --uc-panel-strong: rgba(18, 18, 18, 0.2);
+  --uc-border: rgba(255, 255, 255, 0.36);
   --uc-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
   --uc-window-bg: radial-gradient(1200px 600px at 10% -10%, rgba(124, 92, 255, 0.14), transparent 50%), linear-gradient(180deg, rgba(5, 5, 5, 0.85), rgba(0, 0, 0, 0.7));
   --uc-header-bg: linear-gradient(90deg, rgba(10, 10, 10, 0.65), rgba(14, 14, 14, 0.65) 60%, rgba(10, 10, 10, 0.65));
-  --uc-tbar-bg: linear-gradient(180deg, rgba(12, 12, 12, 0.6), rgba(6, 6, 6, 0.5));
-  --uc-log-bg: linear-gradient(180deg, rgba(6, 6, 6, 0.35), rgba(3, 3, 3, 0.2));
+  --uc-tbar-bg: linear-gradient(180deg, rgba(12, 12, 12, 0.24), rgba(6, 6, 6, 0.16));
+  --uc-log-bg: linear-gradient(180deg, rgba(6, 6, 6, 0.1), rgba(3, 3, 3, 0.05));
   --uc-summary-bg: rgba(124, 92, 255, 0.14);
   --uc-summary-hover: rgba(124, 92, 255, 0.22);
-  --uc-fieldset-bg: rgba(8, 8, 8, 0.4);
+  --uc-fieldset-bg: rgba(8, 8, 8, 0.12);
 }
 
 #undiscord.theme-glass-light {
-  --uc-surface: rgba(255, 255, 255, 0.62);
-  --uc-panel: rgba(255, 255, 255, 0.7);
-  --uc-panel-strong: rgba(238, 241, 255, 0.75);
-  --uc-border: rgba(15, 23, 42, 0.22);
+  --uc-surface: rgba(255, 255, 255, 0.26);
+  --uc-panel: rgba(255, 255, 255, 0.32);
+  --uc-panel-strong: rgba(238, 241, 255, 0.38);
+  --uc-border: rgba(15, 23, 42, 0.36);
   --uc-text: #1f2433;
   --uc-muted: #56607a;
   --uc-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
   --uc-window-bg: radial-gradient(1200px 600px at 10% -10%, rgba(108, 78, 255, 0.14), transparent 50%), linear-gradient(180deg, rgba(250, 251, 255, 0.97), rgba(232, 236, 255, 0.9));
   --uc-header-bg: linear-gradient(90deg, rgba(232, 236, 255, 0.85), rgba(224, 230, 255, 0.85) 60%, rgba(232, 236, 255, 0.85));
-  --uc-tbar-bg: linear-gradient(180deg, rgba(244, 246, 255, 0.78), rgba(226, 231, 255, 0.7));
-  --uc-log-bg: linear-gradient(180deg, rgba(246, 248, 255, 0.75), rgba(232, 236, 255, 0.6));
+  --uc-tbar-bg: linear-gradient(180deg, rgba(244, 246, 255, 0.34), rgba(226, 231, 255, 0.26));
+  --uc-log-bg: linear-gradient(180deg, rgba(246, 248, 255, 0.28), rgba(232, 236, 255, 0.2));
   --uc-summary-bg: rgba(108, 78, 255, 0.14);
   --uc-summary-hover: rgba(108, 78, 255, 0.22);
-  --uc-fieldset-bg: rgba(255, 255, 255, 0.6);
+  --uc-fieldset-bg: rgba(255, 255, 255, 0.24);
 }
 
 #undiscord.theme-glass-default,
 #undiscord.theme-glass-dark,
-#undiscord.theme-glass-light { backdrop-filter: blur(24px) saturate(1.2); }
+#undiscord.theme-glass-light { backdrop-filter: blur(48px) saturate(1.35); }
+
+#undiscord.theme-transparent {
+  --uc-surface: rgba(0, 0, 0, 0);
+  --uc-panel: rgba(0, 0, 0, 0);
+  --uc-panel-strong: rgba(0, 0, 0, 0);
+  --uc-border: rgba(255, 255, 255, 0.18);
+  --uc-window-bg: transparent;
+  --uc-tbar-bg: rgba(0, 0, 0, 0.22);
+  --uc-log-bg: rgba(0, 0, 0, 0.12);
+  --uc-summary-bg: rgba(124, 92, 255, 0.16);
+  --uc-summary-hover: rgba(124, 92, 255, 0.26);
+  --uc-fieldset-bg: rgba(0, 0, 0, 0);
+}
+
+#undiscord.theme-transparent { backdrop-filter: blur(12px) saturate(1.1); }
 #undiscord.browser { box-shadow: var(--uc-shadow); border: 1px solid var(--uc-border); border-radius: 16px; overflow: hidden; }
 #undiscord.container,
 #undiscord .container { background-color: var(--uc-surface); border-radius: 16px; box-sizing: border-box; cursor: default; flex-direction: column; }
@@ -503,6 +518,7 @@
                             <option value="glass-default">Glass Default</option>
                             <option value="glass-dark">Glass Dark</option>
                             <option value="glass-light">Glass Light</option>
+                            <option value="transparent">Transparent</option>
                         </select>
                     </div>
                     <div class="sectionDescription">
@@ -1478,7 +1494,8 @@ body.undiscord-pick-message.after [id^="message-content-"]:hover::after {
 	      'theme-dark',
 	      'theme-glass-default',
 	      'theme-glass-dark',
-	      'theme-glass-light'
+	      'theme-glass-light',
+	      'theme-transparent'
 	    );
 	    if (theme !== 'default') ui.undiscordWindow.classList.add(`theme-${theme}`);
 	  };
