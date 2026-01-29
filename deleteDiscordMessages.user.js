@@ -260,6 +260,12 @@
 /**** Undiscord Button ****/
 #undicord-btn { position: relative; width: auto; height: 28px; margin: 0 8px; cursor: pointer; color: var(--interactive-normal); flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; padding: 6px; border-radius: 10px; transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease; }
 #undicord-btn:hover { background-color: var(--background-modifier-hover); color: var(--interactive-hover); box-shadow: inset 0 0 0 1px var(--background-modifier-accent); }
+#undicord-btn svg,
+#undiscord .header svg.icon { overflow: visible; }
+#undicord-btn svg path,
+#undiscord .header svg.icon path { transform-box: fill-box; transform-origin: center; transition: transform 0.2s ease; }
+#undicord-btn:hover svg path:first-child,
+#undiscord .header svg.icon:hover path:first-child { transform: translateY(-2px) rotate(-18deg); transform-origin: left center; }
 #undicord-btn progress { position: absolute; top: 23px; left: -4px; width: 32px; height: 12px; display: none; }
 #undicord-btn.running { color: var(--button-danger-background) !important; }
 #undicord-btn.running progress { display: block; }
