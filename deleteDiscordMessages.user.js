@@ -287,7 +287,7 @@
 #undiscord #logArea { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: 0.78rem; overflow: auto; padding: 14px; user-select: text; flex-grow: 1; cursor: auto; color: var(--uc-text); background: var(--uc-log-bg); transition: background 0.25s ease, color 0.25s ease; }
 #undiscord .tbar { padding: 12px 16px; background: var(--uc-tbar-bg); border-bottom: 1px solid var(--uc-border); transition: background 0.25s ease, border-color 0.25s ease; }
 #undiscord .tbar button { margin-right: 4px; margin-bottom: 4px; }
-#undiscord .footer { cursor: se-resize; padding-right: 30px; }
+#undiscord .footer { padding-right: 30px; }
 #undiscord .footer #progressPercent { padding: 0 1em; font-size: small; color: var(--interactive-muted); flex-grow: 1; }
 .resize-handle { position: absolute; bottom: -15px; right: -15px; width: 30px; height: 30px; transform: rotate(-45deg); background: repeating-linear-gradient(0, var(--background-modifier-accent), var(--background-modifier-accent) 1px, transparent 2px, transparent 4px); cursor: nwse-resize; }
 /**** Elements ****/
