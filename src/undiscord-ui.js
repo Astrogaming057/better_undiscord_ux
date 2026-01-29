@@ -112,6 +112,26 @@ function initUI() {
   };
   applyTheme(ui.themeMode.value);
 
+  const setupDetailsAnimation = () => {
+    const detailsEls = ui.undiscordWindow.querySelectorAll('details');
+    detailsEls.forEach((details) => {
+      const summary = details.querySelector('summary');
+      if (!summary) return;
+      summary.addEventListener('click', (event) => {
+        if (details.open) {
+          event.preventDefault();
+          if (details.classList.contains('closing')) return;
+          details.classList.add('closing');
+          window.setTimeout(() => {
+            details.open = false;
+            details.classList.remove('closing');
+          }, 200);
+        }
+      });
+    });
+  };
+  setupDetailsAnimation();
+
   // register event listeners
   $('#hide').onclick = toggleWindow;
   $('#toggleSidebar').onclick = ()=> ui.undiscordWindow.classList.toggle('hide-sidebar');

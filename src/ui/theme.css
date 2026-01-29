@@ -151,14 +151,14 @@
 #undiscord input[type="password"],
 #undiscord input[type="datetime-local"],
 #undiscord input[type="number"],
-#undiscord input[type="range"] { background-color: var(--uc-panel); border: 1px solid var(--uc-border); border-radius: 12px; box-sizing: border-box; color: var(--uc-text); font-size: 16px; height: 44px; padding: 12px 10px; transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out; width: 100%; }
-#undiscord select { background-color: var(--uc-panel); border: 1px solid var(--uc-border); border-radius: 12px; box-sizing: border-box; color: var(--uc-text); font-size: 16px; height: 44px; padding: 10px 12px; transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out; width: 100%; }
+#undiscord input[type="range"] { background-color: var(--uc-panel); border: 1px solid var(--uc-border); border-radius: 12px; box-sizing: border-box; color: var(--uc-text); font-size: 16px; height: 44px; padding: 12px 10px; transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out, background 0.2s ease, color 0.2s ease; width: 100%; }
+#undiscord select { background-color: var(--uc-panel); border: 1px solid var(--uc-border); border-radius: 12px; box-sizing: border-box; color: var(--uc-text); font-size: 16px; height: 44px; padding: 10px 12px; transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out, background 0.2s ease, color 0.2s ease; width: 100%; }
 #undiscord .divider,
 #undiscord hr { border: none; margin-bottom: 24px; padding-bottom: 4px; border-bottom: 1px solid var(--uc-border); }
 #undiscord .sectionDescription { margin: 8px 0 16px; color: var(--uc-muted); font-size: 13px; line-height: 18px; font-weight: 400; }
 #undiscord a { color: var(--uc-accent); text-decoration: none; }
 #undiscord .btn,
-#undiscord button { position: relative; display: flex; -webkit-box-pack: center; justify-content: center; -webkit-box-align: center; align-items: center; box-sizing: border-box; border: none; border-radius: 12px; font-size: 14px; font-weight: 600; line-height: 16px; padding: 2px 16px; user-select: none; /* sizeSmall */     width: 60px; height: 38px; min-width: 60px; min-height: 38px; /* lookFilled colorPrimary */     color: #ffffff; background: linear-gradient(135deg, var(--uc-accent), #9a7bff); box-shadow: 0 10px 20px rgba(124, 92, 255, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.18); transition: transform 0.08s ease, filter 0.2s ease, box-shadow 0.2s ease; }
+#undiscord button { position: relative; display: flex; -webkit-box-pack: center; justify-content: center; -webkit-box-align: center; align-items: center; box-sizing: border-box; border: none; border-radius: 12px; font-size: 14px; font-weight: 600; line-height: 16px; padding: 2px 16px; user-select: none; /* sizeSmall */     width: 60px; height: 38px; min-width: 60px; min-height: 38px; /* lookFilled colorPrimary */     color: #ffffff; background: linear-gradient(135deg, var(--uc-accent), #9a7bff); box-shadow: 0 10px 20px rgba(124, 92, 255, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.18); transition: transform 0.08s ease, filter 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease; }
 #undiscord button:hover { filter: brightness(1.06); }
 #undiscord button:active { transform: translateY(1px); }
 #undiscord .sizeMedium { width: 96px; height: 38px; min-width: 96px; min-height: 38px; }
