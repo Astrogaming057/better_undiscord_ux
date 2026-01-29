@@ -278,10 +278,12 @@
 .resize-handle { position: absolute; bottom: -15px; right: -15px; width: 30px; height: 30px; transform: rotate(-45deg); background: repeating-linear-gradient(0, var(--background-modifier-accent), var(--background-modifier-accent) 1px, transparent 2px, transparent 4px); cursor: nwse-resize; }
 /**** Elements ****/
 #undiscord details { background: var(--uc-fieldset-bg); border: 1px solid var(--uc-border); border-radius: 14px; padding: 10px; margin-bottom: 12px; }
-#undiscord summary { font-size: 14px; font-weight: 700; line-height: 20px; position: relative; overflow: hidden; margin-bottom: 8px; padding: 10px 12px; cursor: pointer; white-space: nowrap; text-overflow: ellipsis; color: var(--uc-text); border-radius: 10px; flex-shrink: 0; background: var(--uc-summary-bg); transition: background-color 0.2s ease, color 0.2s ease; }
+#undiscord summary { font-size: 14px; font-weight: 700; line-height: 20px; position: relative; overflow: hidden; margin-bottom: 8px; padding: 10px 36px 10px 12px; cursor: pointer; white-space: nowrap; text-overflow: ellipsis; color: var(--uc-text); border-radius: 10px; flex-shrink: 0; background: var(--uc-summary-bg); transition: background-color 0.2s ease, color 0.2s ease; }
 #undiscord summary:hover { background-color: var(--uc-summary-hover); }
 #undiscord summary::-webkit-details-marker { display: none; }
 #undiscord summary::marker { content: ""; }
+#undiscord summary::after { content: "▾"; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 14px; line-height: 1; color: var(--uc-muted); transition: transform 0.2s ease, color 0.2s ease; }
+#undiscord details[open] > summary::after { transform: translateY(-50%) rotate(180deg); color: var(--uc-text); }
 #undiscord fieldset { padding: 10px; margin-bottom: 8px; border-radius: 12px; background: var(--uc-fieldset-bg); border: 1px solid var(--uc-border); }
 #undiscord legend a { float: none; text-transform: initial; margin-left: auto; }
 #undiscord progress { height: 8px; margin-top: 6px; flex-grow: 1; border-radius: 999px; overflow: hidden; background-color: rgba(255, 255, 255, 0.08); }
