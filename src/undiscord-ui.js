@@ -32,6 +32,7 @@ const ui = {
   undiscordBtn: null,
   logArea: null,
   autoScroll: null,
+  themeMode: null,
 
   // progress handler
   progressMain: null,
@@ -95,6 +96,20 @@ function initUI() {
   ui.progressMain = $('#progressBar');
   ui.progressIcon = ui.undiscordBtn.querySelector('progress');
   ui.percent = $('#progressPercent');
+  ui.themeMode = $('#themeMode');
+
+  const applyTheme = (mode) => {
+    const theme = mode || 'default';
+    ui.undiscordWindow.classList.remove(
+      'theme-light',
+      'theme-dark',
+      'theme-glass-default',
+      'theme-glass-dark',
+      'theme-glass-light'
+    );
+    if (theme !== 'default') ui.undiscordWindow.classList.add(`theme-${theme}`);
+  };
+  applyTheme(ui.themeMode.value);
 
   // register event listeners
   $('#hide').onclick = toggleWindow;
@@ -130,6 +145,10 @@ function initUI() {
     toggleWindow();
   };
   $('button#getToken').onclick = () => $('input#token').value = fillToken();
+  ui.themeMode.onchange = (event) => {
+    const theme = event.target.value || 'default';
+    applyTheme(theme);
+  };
 
   // sync delays
   $('input#searchDelay').onchange = (e) => {

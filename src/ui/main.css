@@ -6,7 +6,7 @@
 #undicord-btn.running { color: var(--button-danger-background) !important; }
 #undicord-btn.running progress { display: block; }
 /**** Undiscord Interface ****/
-#undiscord { position: fixed; z-index: 100; top: 58px; right: 10px; display: flex; flex-direction: column; width: 860px; height: 82vh; min-width: 680px; max-width: 100vw; min-height: 480px; max-height: 100vh; color: var(--uc-text); border-radius: 16px; background: radial-gradient(1200px 600px at 10% -10%, rgba(124, 92, 255, 0.18), transparent 40%), linear-gradient(180deg, #0b1020, #0a0f1f); box-shadow: var(--uc-shadow); backdrop-filter: blur(10px); will-change: top, left, width, height; }
+#undiscord { position: fixed; z-index: 100; top: 58px; right: 10px; display: flex; flex-direction: column; width: 860px; height: 82vh; min-width: 680px; max-width: 100vw; min-height: 480px; max-height: 100vh; color: var(--uc-text); border-radius: 16px; background: var(--uc-window-bg); box-shadow: var(--uc-shadow); backdrop-filter: blur(10px); will-change: top, left, width, height; }
 #undiscord .header .icon { cursor: pointer; }
 #undiscord .window-body { height: calc(100% - 60px); display: flex; flex-direction: column; }
 #undiscord .main { display: flex; flex-direction: column; flex-grow: 1; min-height: 0; }
@@ -26,19 +26,19 @@
 #undiscord .activity { display: flex; flex-direction: column; min-height: 0; background: var(--uc-panel); border: 1px solid var(--uc-border); border-radius: 16px; overflow: hidden; }
 #undiscord.hide-sidebar .sidebar { display: none; }
 #undiscord.hide-sidebar .content-grid { grid-template-columns: 1fr; }
-#undiscord #logArea { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: 0.78rem; overflow: auto; padding: 14px; user-select: text; flex-grow: 1; cursor: auto; color: var(--uc-text); background: linear-gradient(180deg, rgba(10, 15, 31, 0.6), rgba(10, 15, 31, 0.2)); }
-#undiscord .tbar { padding: 12px 16px; background: linear-gradient(180deg, rgba(20, 29, 54, 0.9), rgba(14, 20, 40, 0.9)); border-bottom: 1px solid var(--uc-border); }
+#undiscord #logArea { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: 0.78rem; overflow: auto; padding: 14px; user-select: text; flex-grow: 1; cursor: auto; color: var(--uc-text); background: var(--uc-log-bg); }
+#undiscord .tbar { padding: 12px 16px; background: var(--uc-tbar-bg); border-bottom: 1px solid var(--uc-border); }
 #undiscord .tbar button { margin-right: 4px; margin-bottom: 4px; }
 #undiscord .footer { cursor: se-resize; padding-right: 30px; }
 #undiscord .footer #progressPercent { padding: 0 1em; font-size: small; color: var(--interactive-muted); flex-grow: 1; }
 .resize-handle { position: absolute; bottom: -15px; right: -15px; width: 30px; height: 30px; transform: rotate(-45deg); background: repeating-linear-gradient(0, var(--background-modifier-accent), var(--background-modifier-accent) 1px, transparent 2px, transparent 4px); cursor: nwse-resize; }
 /**** Elements ****/
-#undiscord details { background: rgba(8, 12, 24, 0.6); border: 1px solid var(--uc-border); border-radius: 14px; padding: 10px; margin-bottom: 12px; }
-#undiscord summary { font-size: 14px; font-weight: 700; line-height: 20px; position: relative; overflow: hidden; margin-bottom: 8px; padding: 10px 12px; cursor: pointer; white-space: nowrap; text-overflow: ellipsis; color: var(--uc-text); border-radius: 10px; flex-shrink: 0; background: rgba(124, 92, 255, 0.08); transition: background-color 0.2s ease, color 0.2s ease; }
-#undiscord summary:hover { background-color: rgba(124, 92, 255, 0.16); }
+#undiscord details { background: var(--uc-fieldset-bg); border: 1px solid var(--uc-border); border-radius: 14px; padding: 10px; margin-bottom: 12px; }
+#undiscord summary { font-size: 14px; font-weight: 700; line-height: 20px; position: relative; overflow: hidden; margin-bottom: 8px; padding: 10px 12px; cursor: pointer; white-space: nowrap; text-overflow: ellipsis; color: var(--uc-text); border-radius: 10px; flex-shrink: 0; background: var(--uc-summary-bg); transition: background-color 0.2s ease, color 0.2s ease; }
+#undiscord summary:hover { background-color: var(--uc-summary-hover); }
 #undiscord summary::-webkit-details-marker { display: none; }
 #undiscord summary::marker { content: ""; }
-#undiscord fieldset { padding: 10px; margin-bottom: 8px; border-radius: 12px; background: rgba(20, 29, 54, 0.6); border: 1px solid var(--uc-border); }
+#undiscord fieldset { padding: 10px; margin-bottom: 8px; border-radius: 12px; background: var(--uc-fieldset-bg); border: 1px solid var(--uc-border); }
 #undiscord legend a { float: none; text-transform: initial; margin-left: auto; }
 #undiscord progress { height: 8px; margin-top: 6px; flex-grow: 1; border-radius: 999px; overflow: hidden; background-color: rgba(255, 255, 255, 0.08); }
 #undiscord .importJson { display: flex; flex-direction: row; }
