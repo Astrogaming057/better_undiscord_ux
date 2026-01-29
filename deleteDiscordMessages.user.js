@@ -24,43 +24,77 @@
 
 	var themeCss = (`
 /* undiscord window */
-#undiscord.browser { box-shadow: var(--shadow-border), var(--shadow-high); border: 1px solid var(--border-subtle); overflow: hidden; }
+#undiscord {
+  --uc-bg: #0b1020;
+  --uc-surface: #11182b;
+  --uc-panel: #141d36;
+  --uc-panel-strong: #1a2442;
+  --uc-accent: #7c5cff;
+  --uc-accent-2: #2de2a6;
+  --uc-danger: #ff5c7a;
+  --uc-border: rgba(255, 255, 255, 0.08);
+  --uc-text: #e7ecff;
+  --uc-muted: #98a4c8;
+  --uc-shadow: 0 24px 60px rgba(4, 8, 18, 0.6);
+}
+#undiscord.browser { box-shadow: var(--uc-shadow); border: 1px solid var(--uc-border); border-radius: 16px; overflow: hidden; }
 #undiscord.container,
-#undiscord .container { background-color: var(--background-surface-high); border-radius: 8px; box-sizing: border-box; cursor: default; flex-direction: column; }
-#undiscord .header { background-color: var(--background-tertiary); height: 48px; align-items: center; min-height: 48px; padding: 0 16px; display: flex; color: var(--header-secondary); cursor: grab; }
-#undiscord .header .icon { color: var(--interactive-normal); margin-right: 8px; flex-shrink: 0; width: 24; height: 24; }
-#undiscord .header .icon:hover { color: var(--interactive-hover); }
-#undiscord .header h3 { font-size: 16px; line-height: 20px; font-weight: 500; font-family: var(--font-display); color: var(--header-primary); flex-shrink: 0; margin-right: 16px; }
+#undiscord .container { background-color: var(--uc-surface); border-radius: 16px; box-sizing: border-box; cursor: default; flex-direction: column; }
+#undiscord .header { background: linear-gradient(90deg, #101833, #141b35 60%, #101833); height: 60px; align-items: center; min-height: 60px; padding: 0 22px; display: flex; color: var(--uc-muted); cursor: grab; box-shadow: inset 0 -1px 0 var(--uc-border); }
+#undiscord .header .icon { color: var(--uc-muted); margin-right: 10px; flex-shrink: 0; width: 24; height: 24; }
+#undiscord .header .icon:hover { color: var(--uc-text); }
+#undiscord .header h3 { font-size: 16px; line-height: 20px; font-weight: 700; font-family: var(--font-display); color: var(--uc-text); flex-shrink: 0; margin-right: 16px; letter-spacing: 0.4px; }
 #undiscord .spacer { flex-grow: 1; }
-#undiscord .header .vert-divider { width: 1px; height: 24px; background-color: var(--background-modifier-accent); margin-right: 16px; flex-shrink: 0; }
+#undiscord .header .vert-divider { width: 1px; height: 24px; background-color: var(--uc-border); margin-right: 16px; flex-shrink: 0; }
 #undiscord legend,
-#undiscord label { color: var(--header-secondary); font-size: 12px; line-height: 16px; font-weight: 500; text-transform: uppercase; cursor: default; font-family: var(--font-display); margin-bottom: 8px; }
-#undiscord .multiInput { display: flex; align-items: center; font-size: 16px; box-sizing: border-box; width: 100%; border-radius: 3px; color: var(--text-default); background-color: var(--input-background); border: none; transition: border-color 0.2s ease-in-out 0s; }
+#undiscord label { color: var(--uc-muted); font-size: 11px; line-height: 16px; font-weight: 600; text-transform: uppercase; cursor: default; font-family: var(--font-display); margin-bottom: 8px; letter-spacing: 0.4px; }
+#undiscord legend { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 2px; margin: 0 0 8px; }
+#undiscord .multiInput { display: flex; align-items: center; font-size: 16px; box-sizing: border-box; width: 100%; border-radius: 12px; color: var(--uc-text); background-color: var(--uc-panel); border: 1px solid var(--uc-border); transition: border-color 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s; }
 #undiscord .multiInput :first-child { flex-grow: 1; }
 #undiscord .multiInput button:last-child { margin-right: 4px; }
-#undiscord .input { font-size: 16px; width: 100%; transition: border-color 0.2s ease-in-out 0s; padding: 10px; height: 44px; background-color: var(--input-background); border: 1px solid var(--input-border); border-radius: 8px; box-sizing: border-box; color: var(--text-default); }
+#undiscord .input { font-size: 15px; width: 100%; transition: border-color 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s; padding: 10px 12px; height: 42px; background-color: var(--uc-panel); border: 1px solid var(--uc-border); border-radius: 12px; box-sizing: border-box; color: var(--uc-text); }
 #undiscord fieldset { margin-top: 16px; }
-#undiscord .input-wrapper { display: flex; align-items: center; font-size: 16px; box-sizing: border-box; width: 100%; border-radius: 3px; color: var(--text-default); background-color: var(--input-background); border: none; transition: border-color 0.2s ease-in-out 0s; }
+#undiscord .input-wrapper { display: flex; align-items: center; font-size: 16px; box-sizing: border-box; width: 100%; border-radius: 12px; color: var(--uc-text); background-color: var(--uc-panel); border: none; transition: border-color 0.2s ease-in-out 0s; }
 #undiscord input[type="text"],
 #undiscord input[type="search"],
 #undiscord input[type="password"],
 #undiscord input[type="datetime-local"],
 #undiscord input[type="number"],
-#undiscord input[type="range"] { background-color: var(--input-background); border: 1px solid var(--input-border); border-radius: 8px; box-sizing: border-box; color: var(--text-default); font-size: 16px; height: 44px; padding: 12px 10px; transition: border-color .2s ease-in-out; width: 100%; }
+#undiscord input[type="range"] { background-color: var(--uc-panel); border: 1px solid var(--uc-border); border-radius: 12px; box-sizing: border-box; color: var(--uc-text); font-size: 16px; height: 44px; padding: 12px 10px; transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out; width: 100%; }
 #undiscord .divider,
-#undiscord hr { border: none; margin-bottom: 24px; padding-bottom: 4px; border-bottom: 1px solid var(--background-modifier-accent); }
-#undiscord .sectionDescription { margin-bottom: 16px; color: var(--header-secondary); font-size: 14px; line-height: 20px; font-weight: 400; }
-#undiscord a { color: var(--text-link); text-decoration: none; }
+#undiscord hr { border: none; margin-bottom: 24px; padding-bottom: 4px; border-bottom: 1px solid var(--uc-border); }
+#undiscord .sectionDescription { margin: 8px 0 16px; color: var(--uc-muted); font-size: 13px; line-height: 18px; font-weight: 400; }
+#undiscord a { color: var(--uc-accent); text-decoration: none; }
 #undiscord .btn,
-#undiscord button { position: relative; display: flex; -webkit-box-pack: center; justify-content: center; -webkit-box-align: center; align-items: center; box-sizing: border-box; background: none; border: none; border-radius: 3px; font-size: 14px; font-weight: 500; line-height: 16px; padding: 2px 16px; user-select: none; /* sizeSmall */     width: 60px; height: 32px; min-width: 60px; min-height: 32px; /* lookFilled colorPrimary */     color: rgb(255, 255, 255); background-color: var(--button-secondary-background); }
+#undiscord button { position: relative; display: flex; -webkit-box-pack: center; justify-content: center; -webkit-box-align: center; align-items: center; box-sizing: border-box; background: none; border: none; border-radius: 12px; font-size: 14px; font-weight: 600; line-height: 16px; padding: 2px 16px; user-select: none; /* sizeSmall */     width: 60px; height: 38px; min-width: 60px; min-height: 38px; /* lookFilled colorPrimary */     color: #ffffff; background: linear-gradient(135deg, var(--uc-accent), #9a7bff); box-shadow: 0 10px 20px rgba(124, 92, 255, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.18); transition: transform 0.08s ease, filter 0.2s ease, box-shadow 0.2s ease; }
+#undiscord button:hover { filter: brightness(1.06); }
+#undiscord button:active { transform: translateY(1px); }
 #undiscord .sizeMedium { width: 96px; height: 38px; min-width: 96px; min-height: 38px; }
 #undiscord .sizeMedium.icon { width: 38px; min-width: 38px; }
 #undiscord sup { vertical-align: top; }
 /* lookFilled colorPrimary */
-#undiscord .accent { background-color: var(--brand-experiment); }
-#undiscord .danger { background-color: var(--button-danger-background); }
-#undiscord .positive { background-color: var(--button-positive-background); }
-#undiscord .info { font-size: 12px; line-height: 16px; padding: 8px 10px; color: var(--text-muted); }
+#undiscord .accent { background: linear-gradient(135deg, var(--uc-accent), #9a7bff); }
+#undiscord .danger { background: linear-gradient(135deg, var(--uc-danger), #ff8aa0); }
+#undiscord .positive { background: linear-gradient(135deg, var(--uc-accent-2), #59f0c0); }
+#undiscord .info { font-size: 12px; line-height: 16px; padding: 8px 10px; color: var(--uc-muted); }
+#undiscord .accent { box-shadow: 0 10px 20px rgba(124, 92, 255, 0.35); }
+#undiscord .danger { box-shadow: 0 10px 20px rgba(255, 92, 122, 0.35); }
+#undiscord .positive { box-shadow: 0 10px 20px rgba(45, 226, 166, 0.3); }
+#undiscord #redact { appearance: none; width: 38px; height: 22px; border-radius: 999px; background: rgba(255, 255, 255, 0.15); border: 1px solid var(--uc-border); position: relative; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
+#undiscord #redact::before { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #ffffff; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); transition: transform 0.2s ease; }
+#undiscord #redact:checked { background: linear-gradient(135deg, var(--uc-accent), #9a7bff); border-color: rgba(124, 92, 255, 0.6); box-shadow: 0 0 0 2px rgba(124, 92, 255, 0.15); }
+#undiscord #redact:checked::before { transform: translateX(16px); }
+#undiscord .tbar label.row { gap: 8px; color: var(--uc-text); text-transform: none; }
+#undiscord input[type="checkbox"]:not(#redact) { appearance: none; width: 36px; height: 20px; border-radius: 999px; background: rgba(255, 255, 255, 0.12); border: 1px solid var(--uc-border); position: relative; cursor: pointer; margin-right: 8px; transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
+#undiscord input[type="checkbox"]:not(#redact)::before { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #ffffff; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); transition: transform 0.2s ease; }
+#undiscord input[type="checkbox"]:not(#redact):checked { background: linear-gradient(135deg, var(--uc-accent-2), #59f0c0); border-color: rgba(45, 226, 166, 0.6); box-shadow: 0 0 0 2px rgba(45, 226, 166, 0.15); }
+#undiscord input[type="checkbox"]:not(#redact):checked::before { transform: translateX(16px); }
+#undiscord label.row,
+#undiscord .sectionDescription label,
+#undiscord .footer label { display: flex; align-items: center; gap: 8px; text-transform: none; color: var(--uc-text); line-height: 20px; min-height: 20px; }
+#undiscord input:focus,
+#undiscord select:focus,
+#undiscord textarea:focus { outline: none; box-shadow: 0 0 0 2px rgba(124, 92, 255, 0.5); border-color: var(--uc-accent); }
 /* Scrollbar */
 #undiscord .scroll::-webkit-scrollbar { width: 8px; height: 8px; }
 #undiscord .scroll::-webkit-scrollbar-corner { background-color: transparent; }
@@ -95,31 +129,47 @@
 
 	var mainCss = (`
 /**** Undiscord Button ****/
-#undicord-btn { position: relative; width: auto; height: 24px; margin: 0 8px; cursor: pointer; color: var(--interactive-normal); flex: 0 0 auto; }
+#undicord-btn { position: relative; width: auto; height: 28px; margin: 0 8px; cursor: pointer; color: var(--interactive-normal); flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; padding: 6px; border-radius: 10px; transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease; }
+#undicord-btn:hover { background-color: var(--background-modifier-hover); color: var(--interactive-hover); box-shadow: inset 0 0 0 1px var(--background-modifier-accent); }
 #undicord-btn progress { position: absolute; top: 23px; left: -4px; width: 32px; height: 12px; display: none; }
 #undicord-btn.running { color: var(--button-danger-background) !important; }
 #undicord-btn.running progress { display: block; }
 /**** Undiscord Interface ****/
-#undiscord { position: fixed; z-index: 100; top: 58px; right: 10px; display: flex; flex-direction: column; width: 800px; height: 80vh; min-width: 610px; max-width: 100vw; min-height: 448px; max-height: 100vh; color: var(--text-normal); border-radius: 4px; background-color: var(--background-secondary); box-shadow: var(--elevation-stroke), var(--elevation-high); will-change: top, left, width, height; }
+#undiscord { position: fixed; z-index: 100; top: 58px; right: 10px; display: flex; flex-direction: column; width: 860px; height: 82vh; min-width: 680px; max-width: 100vw; min-height: 480px; max-height: 100vh; color: var(--uc-text); border-radius: 16px; background: radial-gradient(1200px 600px at 10% -10%, rgba(124, 92, 255, 0.18), transparent 40%), linear-gradient(180deg, #0b1020, #0a0f1f); box-shadow: var(--uc-shadow); backdrop-filter: blur(10px); will-change: top, left, width, height; }
 #undiscord .header .icon { cursor: pointer; }
-#undiscord .window-body { height: calc(100% - 48px); }
-#undiscord .sidebar { overflow: hidden scroll; overflow-y: auto; width: 270px; min-width: 250px; height: 100%; max-height: 100%; padding: 8px; background: var(--bg-overlay-4, var(--background-base-lowest)); }
+#undiscord .window-body { height: calc(100% - 60px); display: flex; flex-direction: column; }
+#undiscord .main { display: flex; flex-direction: column; flex-grow: 1; min-height: 0; }
+#undiscord .content-grid { display: grid; grid-template-columns: 340px 1fr; gap: 16px; padding: 16px; flex-grow: 1; min-height: 0; }
+#undiscord .sidebar { overflow: hidden scroll; overflow-y: auto; height: 100%; max-height: 100%; padding: 16px; background: var(--uc-panel); border: 1px solid var(--uc-border); border-radius: 16px; }
 #undiscord .sidebar legend,
-#undiscord .sidebar label { display: block; width: 100%; }
-#undiscord .main { display: flex; max-width: calc(100% - 250px); background-color: var(--bg-overlay-chat, var(--background-base-lower)); flex-grow: 1; }
+#undiscord .sidebar label {
+    display: contents;
+    width: 100%;
+}
+#undiscord .sidebar fieldset { position: relative; }
+#undiscord .sidebar legend a { position: absolute; right: 12px; top: 10px; margin-left: 0; }
+#undiscord .sectionDescription label {
+  display: flex;
+  align-items: center;
+}
+#undiscord .activity { display: flex; flex-direction: column; min-height: 0; background: var(--uc-panel); border: 1px solid var(--uc-border); border-radius: 16px; overflow: hidden; }
 #undiscord.hide-sidebar .sidebar { display: none; }
-#undiscord.hide-sidebar .main { max-width: 100%; }
-#undiscord #logArea { font-family: Consolas, Liberation Mono, Menlo, Courier, monospace; font-size: 0.75rem; overflow: auto; padding: 10px; user-select: text; flex-grow: 1; flex-grow: 1; cursor: auto; }
-#undiscord .tbar { padding: 8px; background-color: var(--bg-overlay-2, var(--__header-bar-background)); }
+#undiscord.hide-sidebar .content-grid { grid-template-columns: 1fr; }
+#undiscord #logArea { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: 0.78rem; overflow: auto; padding: 14px; user-select: text; flex-grow: 1; cursor: auto; color: var(--uc-text); background: linear-gradient(180deg, rgba(10, 15, 31, 0.6), rgba(10, 15, 31, 0.2)); }
+#undiscord .tbar { padding: 12px 16px; background: linear-gradient(180deg, rgba(20, 29, 54, 0.9), rgba(14, 20, 40, 0.9)); border-bottom: 1px solid var(--uc-border); }
 #undiscord .tbar button { margin-right: 4px; margin-bottom: 4px; }
 #undiscord .footer { cursor: se-resize; padding-right: 30px; }
 #undiscord .footer #progressPercent { padding: 0 1em; font-size: small; color: var(--interactive-muted); flex-grow: 1; }
 .resize-handle { position: absolute; bottom: -15px; right: -15px; width: 30px; height: 30px; transform: rotate(-45deg); background: repeating-linear-gradient(0, var(--background-modifier-accent), var(--background-modifier-accent) 1px, transparent 2px, transparent 4px); cursor: nwse-resize; }
 /**** Elements ****/
-#undiscord summary { font-size: 16px; font-weight: 500; line-height: 20px; position: relative; overflow: hidden; margin-bottom: 2px; padding: 6px 10px; cursor: pointer; white-space: nowrap; text-overflow: ellipsis; color: var(--interactive-normal); border-radius: 4px; flex-shrink: 0; }
-#undiscord fieldset { padding-left: 8px; }
-#undiscord legend a { float: right; text-transform: initial; }
-#undiscord progress { height: 8px; margin-top: 4px; flex-grow: 1; }
+#undiscord details { background: rgba(8, 12, 24, 0.6); border: 1px solid var(--uc-border); border-radius: 14px; padding: 10px; margin-bottom: 12px; }
+#undiscord summary { font-size: 14px; font-weight: 700; line-height: 20px; position: relative; overflow: hidden; margin-bottom: 8px; padding: 10px 12px; cursor: pointer; white-space: nowrap; text-overflow: ellipsis; color: var(--uc-text); border-radius: 10px; flex-shrink: 0; background: rgba(124, 92, 255, 0.08); transition: background-color 0.2s ease, color 0.2s ease; }
+#undiscord summary:hover { background-color: rgba(124, 92, 255, 0.16); }
+#undiscord summary::-webkit-details-marker { display: none; }
+#undiscord summary::marker { content: ""; }
+#undiscord fieldset { padding: 10px; margin-bottom: 8px; border-radius: 12px; background: rgba(20, 29, 54, 0.6); border: 1px solid var(--uc-border); }
+#undiscord legend a { float: none; text-transform: initial; margin-left: auto; }
+#undiscord progress { height: 8px; margin-top: 6px; flex-grow: 1; border-radius: 999px; overflow: hidden; background-color: rgba(255, 255, 255, 0.08); }
 #undiscord .importJson { display: flex; flex-direction: row; }
 #undiscord .importJson button { margin-left: 5px; width: fit-content; }
 `);
@@ -169,8 +219,24 @@
             </svg>
         </div>
     </div>
-    <div class="window-body" style="display: flex; flex-direction: row;">
-        <div class="sidebar scroll">
+    <div class="window-body">
+        <div class="main col">
+            <div class="tbar col">
+                <div class="row">
+                    <button id="toggleSidebar" class="sizeMedium icon">☰</button>
+                    <button id="start" class="sizeMedium danger" style="width: 150px;" title="Start the deletion process">▶︎ Delete</button>
+                    <button id="stop" class="sizeMedium" title="Stop the deletion process" disabled>🛑 Stop</button>
+                    <button id="clear" class="sizeMedium">Clear log</button>
+                    <label class="row" title="Hide sensitive information on your screen for taking screenshots">
+                        <input id="redact" type="checkbox" checked> Streamer mode
+                    </label>
+                </div>
+                <div class="row">
+                    <progress id="progressBar" style="display:none;"></progress>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="sidebar settings scroll">
             <details open>
                 <summary>General</summary>
                 <fieldset>
@@ -365,39 +431,27 @@
             <hr>
             <div></div>
             <div class="info">
-                Undiscord {{VERSION}}
+                Undiscord {{VERSION}} · Better UX by Astrogaming057
                 <br> victornpb
             </div>
-        </div>
-        <div class="main col">
-            <div class="tbar col">
-                <div class="row">
-                    <button id="toggleSidebar" class="sizeMedium icon">☰</button>
-                    <button id="start" class="sizeMedium danger" style="width: 150px;" title="Start the deletion process">▶︎ Delete</button>
-                    <button id="stop" class="sizeMedium" title="Stop the deletion process" disabled>🛑 Stop</button>
-                    <button id="clear" class="sizeMedium">Clear log</button>
-                    <label class="row" title="Hide sensitive information on your screen for taking screenshots">
-                        <input id="redact" type="checkbox" checked> Streamer mode
-                    </label>
                 </div>
-                <div class="row">
-                    <progress id="progressBar" style="display:none;"></progress>
+                <div class="activity col">
+                    <pre id="logArea" class="logarea scroll">
+                        <div class="" style="background: var(--background-mentioned); padding: .5em;">Notice: Undiscord may be working slower than usual and<wbr>require multiple attempts due to a recent Discord update.<br>We're working on a fix, and we thank you for your patience.</div>
+                        <center>
+                            <div>Star <a href="{{HOME}}" target="_blank" rel="noopener noreferrer">this project</a> on GitHub!</div>
+                            <div><a href="{{HOME}}/discussions" target="_blank" rel="noopener noreferrer">Issues or help</a></div>
+                        </center>
+                    </pre>
+                    <div class="tbar footer row">
+                        <div id="progressPercent"></div>
+                        <span class="spacer"></span>
+                        <label>
+                            <input id="autoScroll" type="checkbox" checked> Auto scroll
+                        </label>
+                        <div class="resize-handle"></div>
+                    </div>
                 </div>
-            </div>
-            <pre id="logArea" class="logarea scroll">
-                <div class="" style="background: var(--background-mentioned); padding: .5em;">Notice: Undiscord may be working slower than usual and<wbr>require multiple attempts due to a recent Discord update.<br>We're working on a fix, and we thank you for your patience.</div>
-                <center>
-                    <div>Star <a href="{{HOME}}" target="_blank" rel="noopener noreferrer">this project</a> on GitHub!</div>
-                    <div><a href="{{HOME}}/discussions" target="_blank" rel="noopener noreferrer">Issues or help</a></div>
-                </center>
-            </pre>
-            <div class="tbar footer row">
-                <div id="progressPercent"></div>
-                <span class="spacer"></span>
-                <label>
-                    <input id="autoScroll" type="checkbox" checked> Auto scroll
-                </label>
-                <div class="resize-handle"></div>
             </div>
         </div>
     </div>
@@ -1259,7 +1313,7 @@ body.undiscord-pick-message.after [id^="message-content-"]:hover::after {
 	  ui.undiscordBtn = createElm(buttonHtml);
 	  ui.undiscordBtn.onclick = toggleWindow;
 	  function mountBtn() {
-	    const toolbar = document.querySelector('#app-mount [class*="-toolbar"]');
+	    const toolbar = document.querySelector('#app-mount [class^=toolbar]');
 	    if (toolbar) toolbar.appendChild(ui.undiscordBtn);
 	  }
 	  mountBtn();

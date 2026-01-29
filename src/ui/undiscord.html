@@ -1,3 +1,4 @@
+
 <div id="undiscord" class="browser container redact" style="display:none;">
     <div class="header">
         <svg class="icon" aria-hidden="false" width="24" height="24" viewBox="0 0 24 24">
@@ -18,8 +19,24 @@
             </svg>
         </div>
     </div>
-    <div class="window-body" style="display: flex; flex-direction: row;">
-        <div class="sidebar scroll">
+    <div class="window-body">
+        <div class="main col">
+            <div class="tbar col">
+                <div class="row">
+                    <button id="toggleSidebar" class="sizeMedium icon">☰</button>
+                    <button id="start" class="sizeMedium danger" style="width: 150px;" title="Start the deletion process">▶︎ Delete</button>
+                    <button id="stop" class="sizeMedium" title="Stop the deletion process" disabled>🛑 Stop</button>
+                    <button id="clear" class="sizeMedium">Clear log</button>
+                    <label class="row" title="Hide sensitive information on your screen for taking screenshots">
+                        <input id="redact" type="checkbox" checked> Streamer mode
+                    </label>
+                </div>
+                <div class="row">
+                    <progress id="progressBar" style="display:none;"></progress>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="sidebar settings scroll">
             <details open>
                 <summary>General</summary>
                 <fieldset>
@@ -214,39 +231,27 @@
             <hr>
             <div></div>
             <div class="info">
-                Undiscord {{VERSION}}
+                Undiscord {{VERSION}} · Better UX by Astrogaming057
                 <br> victornpb
             </div>
-        </div>
-        <div class="main col">
-            <div class="tbar col">
-                <div class="row">
-                    <button id="toggleSidebar" class="sizeMedium icon">☰</button>
-                    <button id="start" class="sizeMedium danger" style="width: 150px;" title="Start the deletion process">▶︎ Delete</button>
-                    <button id="stop" class="sizeMedium" title="Stop the deletion process" disabled>🛑 Stop</button>
-                    <button id="clear" class="sizeMedium">Clear log</button>
-                    <label class="row" title="Hide sensitive information on your screen for taking screenshots">
-                        <input id="redact" type="checkbox" checked> Streamer mode
-                    </label>
                 </div>
-                <div class="row">
-                    <progress id="progressBar" style="display:none;"></progress>
+                <div class="activity col">
+                    <pre id="logArea" class="logarea scroll">
+                        <div class="" style="background: var(--background-mentioned); padding: .5em;">Notice: Undiscord may be working slower than usual and<wbr>require multiple attempts due to a recent Discord update.<br>We're working on a fix, and we thank you for your patience.</div>
+                        <center>
+                            <div>Star <a href="{{HOME}}" target="_blank" rel="noopener noreferrer">this project</a> on GitHub!</div>
+                            <div><a href="{{HOME}}/discussions" target="_blank" rel="noopener noreferrer">Issues or help</a></div>
+                        </center>
+                    </pre>
+                    <div class="tbar footer row">
+                        <div id="progressPercent"></div>
+                        <span class="spacer"></span>
+                        <label>
+                            <input id="autoScroll" type="checkbox" checked> Auto scroll
+                        </label>
+                        <div class="resize-handle"></div>
+                    </div>
                 </div>
-            </div>
-            <pre id="logArea" class="logarea scroll">
-                <div class="" style="background: var(--background-mentioned); padding: .5em;">Notice: Undiscord may be working slower than usual and<wbr>require multiple attempts due to a recent Discord update.<br>We're working on a fix, and we thank you for your patience.</div>
-                <center>
-                    <div>Star <a href="{{HOME}}" target="_blank" rel="noopener noreferrer">this project</a> on GitHub!</div>
-                    <div><a href="{{HOME}}/discussions" target="_blank" rel="noopener noreferrer">Issues or help</a></div>
-                </center>
-            </pre>
-            <div class="tbar footer row">
-                <div id="progressPercent"></div>
-                <span class="spacer"></span>
-                <label>
-                    <input id="autoScroll" type="checkbox" checked> Auto scroll
-                </label>
-                <div class="resize-handle"></div>
             </div>
         </div>
     </div>
