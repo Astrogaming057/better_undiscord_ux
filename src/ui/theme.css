@@ -125,9 +125,8 @@
   --uc-summary-bg: rgba(124, 92, 255, 0.16);
   --uc-summary-hover: rgba(124, 92, 255, 0.26);
   --uc-fieldset-bg: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(12px) saturate(1.1);
 }
-
-#undiscord.theme-transparent { backdrop-filter: blur(12px) saturate(1.1); }
 #undiscord.browser { box-shadow: var(--uc-shadow); border: 1px solid var(--uc-border); border-radius: 16px; overflow: hidden; }
 #undiscord.container,
 #undiscord .container { background-color: var(--uc-surface); border-radius: 16px; box-sizing: border-box; cursor: default; flex-direction: column; }
