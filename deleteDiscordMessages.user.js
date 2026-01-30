@@ -295,6 +295,13 @@
 #undiscord .tbar button { margin-right: 4px; margin-bottom: 4px; }
 #undiscord .footer { padding-right: 30px; }
 #undiscord .footer #progressPercent { padding: 0 1em; font-size: small; color: var(--interactive-muted); flex-grow: 1; }
+#undiscord .export-wrap { position: relative; display: inline-flex; align-items: center; margin-right: 4px; }
+#undiscord .export-wrap .sizeMedium.icon { width: 52px; min-width: 52px; height: 44px; }
+#undiscord .export-wrap svg { width: 26px; height: 26px; }
+#undiscord .export-menu { position: absolute; right: -160px; bottom: 46px; min-width: 210px; padding: 8px; border-radius: 12px; background: var(--uc-panel); border: 1px solid var(--uc-border); box-shadow: var(--uc-shadow); display: none; flex-direction: column; gap: 6px; z-index: 50; }
+#undiscord .export-menu button { width: 100%; justify-content: flex-start; height: 34px; min-height: 34px; padding: 0 12px; background: none; color: var(--uc-text); box-shadow: none; }
+#undiscord .export-menu button:hover { background: rgba(124, 92, 255, 0.18); filter: none; }
+#undiscord .export-menu.open { display: flex; }
 .resize-handle { position: absolute; bottom: -15px; right: -15px; width: 30px; height: 30px; transform: rotate(-45deg); background: repeating-linear-gradient(0, var(--background-modifier-accent), var(--background-modifier-accent) 1px, transparent 2px, transparent 4px); cursor: nwse-resize; }
 /**** Elements ****/
 #undiscord details { background: var(--uc-fieldset-bg); border: 1px solid var(--uc-border); border-radius: 14px; padding: 10px; margin-bottom: 12px; transition: background 0.25s ease, border-color 0.25s ease; }
@@ -388,6 +395,7 @@
                     <button id="start" class="sizeMedium danger" style="width: 150px;" title="Start the deletion process">▶︎ Delete</button>
                     <button id="stop" class="sizeMedium" title="Stop the deletion process" disabled>🛑 Stop</button>
                     <button id="clear" class="sizeMedium">Clear log</button>
+                    <span class="spacer"></span>
                     <label class="row" title="Hide sensitive information on your screen for taking screenshots">
                         <input id="redact" type="checkbox" checked> Streamer mode
                     </label>
@@ -617,22 +625,34 @@
                 Undiscord {{VERSION}} · Better UX by Astrogaming057
                 <br> victornpb
             </div>
-                </div>
+        </div>
                 <div class="activity col">
-                    <pre id="logArea" class="logarea scroll">
-                        <div class="" style="background: var(--background-mentioned); padding: .5em;">Notice: Undiscord may be working slower than usual and<wbr>require multiple attempts due to a recent Discord update.<br>We're working on a fix, and we thank you for your patience.</div>
-                        <center>
-                            <div>Star <a href="{{HOME}}" target="_blank" rel="noopener noreferrer">this project</a> on GitHub!</div>
-                            <div><a href="{{HOME}}/discussions" target="_blank" rel="noopener noreferrer">Issues or help</a></div>
-                        </center>
-                    </pre>
+            <pre id="logArea" class="logarea scroll">
+                <div class="" style="background: var(--background-mentioned); padding: .5em;">Notice: Undiscord may be working slower than usual and<wbr>require multiple attempts due to a recent Discord update.<br>We're working on a fix, and we thank you for your patience.</div>
+                <center>
+                    <div>Star <a href="{{HOME}}" target="_blank" rel="noopener noreferrer">this project</a> on GitHub!</div>
+                    <div><a href="{{HOME}}/discussions" target="_blank" rel="noopener noreferrer">Issues or help</a></div>
+                </center>
+            </pre>
                     <div class="tbar footer row">
+                        <div class="export-wrap">
+                            <button id="exportBtn" class="sizeMedium icon" title="Export log" aria-haspopup="true" aria-expanded="false">
+                                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M12 3v10.17l3.59-3.58L17 11l-5 5-5-5 1.41-1.41L11 13.17V3h1zm-7 14h14v2H5v-2z"></path>
+                                </svg>
+                            </button>
+                            <div id="exportMenu" class="export-menu" role="menu">
+                                <button type="button" data-export="json">Export log as JSON</button>
+                                <button type="button" data-export="txt">Export log as TXT</button>
+                                <button type="button" data-export="html">Export log as HTML</button>
+                            </div>
+                        </div>
                         <div id="progressPercent"></div>
-                        <span class="spacer"></span>
-                        <label>
-                            <input id="autoScroll" type="checkbox" checked> Auto scroll
-                        </label>
-                        <div class="resize-handle"></div>
+                <span class="spacer"></span>
+                <label>
+                    <input id="autoScroll" type="checkbox" checked> Auto scroll
+                </label>
+                <div class="resize-handle"></div>
                     </div>
                 </div>
             </div>
@@ -1466,6 +1486,8 @@ body.undiscord-pick-message.after [id^="message-content-"]:hover::after {
 	  logArea: null,
 	  autoScroll: null,
 	  themeMode: null,
+	  exportBtn: null,
+	  exportMenu: null,
 
 	  // progress handler
 	  progressMain: null,
@@ -1530,6 +1552,8 @@ body.undiscord-pick-message.after [id^="message-content-"]:hover::after {
 	  ui.progressIcon = ui.undiscordBtn.querySelector('progress');
 	  ui.percent = $('#progressPercent');
 	  ui.themeMode = $('#themeMode');
+	  ui.exportBtn = $('#exportBtn');
+	  ui.exportMenu = $('#exportMenu');
 
 	  const applyTheme = (mode) => {
 	    const theme = mode || 'default';
@@ -1565,12 +1589,78 @@ body.undiscord-pick-message.after [id^="message-content-"]:hover::after {
 	  };
 	  setupDetailsAnimation();
 
+	  const closeExportMenu = () => {
+	    ui.exportMenu.classList.remove('open');
+	    ui.exportBtn.setAttribute('aria-expanded', 'false');
+	  };
+	  const toggleExportMenu = () => {
+	    const open = ui.exportMenu.classList.toggle('open');
+	    ui.exportBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+	  };
+
+	  const downloadFile = (content, filename, type) => {
+	    const blob = new Blob([content], { type });
+	    const url = URL.createObjectURL(blob);
+	    const a = document.createElement('a');
+	    a.href = url;
+	    a.download = filename;
+	    document.body.appendChild(a);
+	    a.click();
+	    a.remove();
+	    URL.revokeObjectURL(url);
+	  };
+
+	  const exportLog = (format) => {
+	    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+	    if (format === 'json') {
+	      const entries = Array.from(ui.logArea.querySelectorAll('.log')).map((node) => {
+	        const match = node.className.match(/log-([\w-]+)/);
+	        return { type: match ? match[1] : 'log', text: node.textContent || '' };
+	      });
+	      downloadFile(JSON.stringify(entries, null, 2), `undiscord-log-${timestamp}.json`, 'application/json');
+	      return;
+	    }
+	    if (format === 'html') {
+	      const html = `<!doctype html><html><head><meta charset="utf-8"><title>Undiscord log</title><style>
+body { margin: 0; padding: 24px; background: #0b1020; color: #e7ecff; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+.console { max-width: 1100px; margin: 0 auto; padding: 16px; background: #11182b; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; box-shadow: 0 20px 40px rgba(4, 8, 18, 0.5); }
+.log { margin-bottom: 0.4em; white-space: pre-wrap; word-break: break-word; }
+.log-debug { color: inherit; }
+.log-info { color: #00b0f4; }
+.log-verb { color: #72767d; }
+.log-warn { color: #faa61a; }
+.log-error { color: #f04747; }
+.log-success { color: #43b581; }
+a { color: #7c5cff; text-decoration: none; }
+</style></head><body><div class="console">${ui.logArea.innerHTML}</div></body></html>`;
+	      downloadFile(html, `undiscord-log-${timestamp}.html`, 'text/html');
+	      return;
+	    }
+	    const text = ui.logArea.innerText || '';
+	    downloadFile(text, `undiscord-log-${timestamp}.txt`, 'text/plain');
+	  };
+
 	  // register event listeners
 	  $('#hide').onclick = toggleWindow;
 	  $('#toggleSidebar').onclick = ()=> ui.undiscordWindow.classList.toggle('hide-sidebar');
 	  $('button#start').onclick = startAction;
 	  $('button#stop').onclick = stopAction;
 	  $('button#clear').onclick = () => ui.logArea.innerHTML = '';
+	  ui.exportBtn.onclick = (event) => {
+	    event.stopPropagation();
+	    toggleExportMenu();
+	  };
+	  ui.exportMenu.onclick = (event) => {
+	    event.stopPropagation();
+	    const target = event.target.closest('button[data-export]');
+	    if (!target) return;
+	    exportLog(target.dataset.export);
+	    closeExportMenu();
+	  };
+	  document.addEventListener('click', closeExportMenu);
+	  document.addEventListener('keydown', (event) => {
+	    if (event.key === 'Escape') closeExportMenu();
+	  });
 	  $('button#getAuthor').onclick = () => $('input#authorId').value = getAuthorId();
 	  $('button#getGuild').onclick = () => {
 	    const guildId = $('input#guildId').value = getGuildId();

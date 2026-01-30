@@ -32,6 +32,8 @@ const ui = {
   undiscordBtn: null,
   logArea: null,
   autoScroll: null,
+  exportBtn: null,
+  exportMenu: null,
   themeMode: null,
 
   // progress handler
@@ -97,6 +99,8 @@ function initUI() {
   ui.progressIcon = ui.undiscordBtn.querySelector('progress');
   ui.percent = $('#progressPercent');
   ui.themeMode = $('#themeMode');
+  ui.exportBtn = $('#exportBtn');
+  ui.exportMenu = $('#exportMenu');
 
   const applyTheme = (mode) => {
     const theme = mode || 'default';
@@ -132,12 +136,78 @@ function initUI() {
   };
   setupDetailsAnimation();
 
+  const closeExportMenu = () => {
+    ui.exportMenu.classList.remove('open');
+    ui.exportBtn.setAttribute('aria-expanded', 'false');
+  };
+  const toggleExportMenu = () => {
+    const open = ui.exportMenu.classList.toggle('open');
+    ui.exportBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+
+  const downloadFile = (content, filename, type) => {
+    const blob = new Blob([content], { type });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  const exportLog = (format) => {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    if (format === 'json') {
+      const entries = Array.from(ui.logArea.querySelectorAll('.log')).map((node) => {
+        const match = node.className.match(/log-([\w-]+)/);
+        return { type: match ? match[1] : 'log', text: node.textContent || '' };
+      });
+      downloadFile(JSON.stringify(entries, null, 2), `undiscord-log-${timestamp}.json`, 'application/json');
+      return;
+    }
+    if (format === 'html') {
+      const html = `<!doctype html><html><head><meta charset="utf-8"><title>Undiscord log</title><style>
+body { margin: 0; padding: 24px; background: #0b1020; color: #e7ecff; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+.console { max-width: 1100px; margin: 0 auto; padding: 16px; background: #11182b; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; box-shadow: 0 20px 40px rgba(4, 8, 18, 0.5); }
+.log { margin-bottom: 0.4em; white-space: pre-wrap; word-break: break-word; }
+.log-debug { color: inherit; }
+.log-info { color: #00b0f4; }
+.log-verb { color: #72767d; }
+.log-warn { color: #faa61a; }
+.log-error { color: #f04747; }
+.log-success { color: #43b581; }
+a { color: #7c5cff; text-decoration: none; }
+</style></head><body><div class="console">${ui.logArea.innerHTML}</div></body></html>`;
+      downloadFile(html, `undiscord-log-${timestamp}.html`, 'text/html');
+      return;
+    }
+    const text = ui.logArea.innerText || '';
+    downloadFile(text, `undiscord-log-${timestamp}.txt`, 'text/plain');
+  };
+
   // register event listeners
   $('#hide').onclick = toggleWindow;
   $('#toggleSidebar').onclick = ()=> ui.undiscordWindow.classList.toggle('hide-sidebar');
   $('button#start').onclick = startAction;
   $('button#stop').onclick = stopAction;
   $('button#clear').onclick = () => ui.logArea.innerHTML = '';
+  ui.exportBtn.onclick = (event) => {
+    event.stopPropagation();
+    toggleExportMenu();
+  };
+  ui.exportMenu.onclick = (event) => {
+    event.stopPropagation();
+    const target = event.target.closest('button[data-export]');
+    if (!target) return;
+    exportLog(target.dataset.export);
+    closeExportMenu();
+  };
+  document.addEventListener('click', closeExportMenu);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeExportMenu();
+  });
   $('button#getAuthor').onclick = () => $('input#authorId').value = getAuthorId();
   $('button#getGuild').onclick = () => {
     const guildId = $('input#guildId').value = getGuildId();

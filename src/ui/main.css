@@ -37,6 +37,13 @@
 #undiscord .tbar button { margin-right: 4px; margin-bottom: 4px; }
 #undiscord .footer { padding-right: 30px; }
 #undiscord .footer #progressPercent { padding: 0 1em; font-size: small; color: var(--interactive-muted); flex-grow: 1; }
+#undiscord .export-wrap { position: relative; display: inline-flex; align-items: center; margin-right: 4px; }
+#undiscord .export-wrap .sizeMedium.icon { width: 52px; min-width: 52px; height: 44px; }
+#undiscord .export-wrap svg { width: 26px; height: 26px; }
+#undiscord .export-menu { position: absolute; right: -160px; bottom: 46px; min-width: 210px; padding: 8px; border-radius: 12px; background: var(--uc-panel); border: 1px solid var(--uc-border); box-shadow: var(--uc-shadow); display: none; flex-direction: column; gap: 6px; z-index: 50; }
+#undiscord .export-menu button { width: 100%; justify-content: flex-start; height: 34px; min-height: 34px; padding: 0 12px; background: none; color: var(--uc-text); box-shadow: none; }
+#undiscord .export-menu button:hover { background: rgba(124, 92, 255, 0.18); filter: none; }
+#undiscord .export-menu.open { display: flex; }
 .resize-handle { position: absolute; bottom: -15px; right: -15px; width: 30px; height: 30px; transform: rotate(-45deg); background: repeating-linear-gradient(0, var(--background-modifier-accent), var(--background-modifier-accent) 1px, transparent 2px, transparent 4px); cursor: nwse-resize; }
 /**** Elements ****/
 #undiscord details { background: var(--uc-fieldset-bg); border: 1px solid var(--uc-border); border-radius: 14px; padding: 10px; margin-bottom: 12px; transition: background 0.25s ease, border-color 0.25s ease; }
